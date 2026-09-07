@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>노효주 | Green Smart City & Data Analytics Portfolio</title>
+  <meta name="description" content="상명대학교 그린스마트시티학과 노효주의 포트폴리오. 2026 인간식물환경학회 최우수상 수상 및 Google Analytics 자격증 기반 데이터 기반 스마트 그린 시티 연구자.">
+  <meta name="keywords" content="노효주, 그린스마트시티, 상명대학교, 인간식물환경학회, 환경과 원예, Google Analytics, 포트폴리오, 스마트시티">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="노효주 | Green Smart City & Data Analytics Portfolio">
+  <meta property="og:description" content="자연과 첨단 기술, 데이터로 지속 가능한 스마트 시티를 설계하는 노효주입니다.">
+  <meta property="og:type" content="website">
+  
+  <!-- Google Fonts & Pretendard -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+  
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- Animate.css CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Ambient Gradient Orbs -->
+  <div class="ambient-glow orb-1"></div>
+  <div class="ambient-glow orb-2"></div>
+  <div class="ambient-glow orb-3"></div>
+
+  <!-- Header / Navigation Bar -->
+  <header class="header animate__animated animate__fadeInDown" id="header">
+    <div class="container nav-container">
+      <a href="#hero" class="brand-logo">
+        <span class="logo-icon animate__animated animate__pulse animate__infinite"><i data-lucide="leaf"></i></span>
+        <span class="logo-text">HYOJU<span class="highlight">.NOH</span></span>
+      </a>
+
+      <nav class="nav-menu" id="navMenu">
+        <ul class="nav-list">
+          <li><a href="#about" class="nav-link"><i data-lucide="user"></i> 소개</a></li>
+          <li><a href="#awards" class="nav-link"><i data-lucide="award"></i> 학술 수상</a></li>
+          <li><a href="#skills" class="nav-link"><i data-lucide="bar-chart-2"></i> 역량 & GA</a></li>
+          <li><a href="#projects" class="nav-link"><i data-lucide="folder-git-2"></i> 프로젝트</a></li>
+          <li><a href="#dashboard" class="nav-link"><i data-lucide="activity"></i> 라이브 지표</a></li>
+          <li><a href="#contact" class="nav-link"><i data-lucide="mail"></i> 연락처</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="theme-toggle-btn" id="themeToggle" title="테마 전환" aria-label="테마 전환">
+          <i data-lucide="sun" class="sun-icon"></i>
+          <i data-lucide="moon" class="moon-icon"></i>
+        </button>
+
+        <button class="btn btn-outline cv-btn" id="openResumeBtn">
+          <i data-lucide="file-text"></i>
+          <span>이력서 보기</span>
+        </button>
+
+        <button class="hamburger-btn" id="mobileMenuBtn" aria-label="메뉴 열기">
+          <i data-lucide="menu"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section" id="hero">
+    <canvas id="heroCanvas" class="hero-canvas"></canvas>
+    
+    <div class="container hero-container">
+      <div class="hero-badge-wrapper animate__animated animate__fadeInDown">
+        <div class="status-badge">
+          <span class="status-pulse"></span>
+          <span>Green Smart City & Environmental Data Analyst</span>
+        </div>
+      </div>
+
+      <h1 class="hero-title animate__animated animate__fadeInUp">
+        자연의 생명력과 <span class="gradient-text">첨단 스마트 데이터</span>로<br>
+        지속 가능한 도시를 설계합니다
+      </h1>
+
+      <p class="hero-subtitle animate__animated animate__fadeInUp animate__delay-1s">
+        안녕하세요! <strong>상명대학교 그린스마트시티학과</strong>에서 인간과 식물, 첨단 환경 기술의 조화를 연구하는 
+        <strong>노효주</strong>입니다. 데이터 기반의 인사이트(Google Analytics)와 생태 원예학의 융합을 통해 미래 도시의 새로운 가치를 창출합니다.
+      </p>
+
+      <div class="hero-actions animate__animated animate__fadeInUp animate__delay-1s">
+        <a href="#awards" class="btn btn-primary">
+          <i data-lucide="trophy"></i>
+          <span>학술 성과 보기</span>
+        </a>
+        <button class="btn btn-glass copy-phone-btn" data-phone="010-2592-0744">
+          <i data-lucide="phone"></i>
+          <span>010-2592-0744 복사</span>
+        </button>
+        <button class="btn btn-icon-only qr-btn" id="openQrBtn" title="모바일 명함 QR">
+          <i data-lucide="qr-code"></i>
+        </button>
+      </div>
+
+      <!-- Quick Metrics Ribbon -->
+      <div class="hero-metrics-ribbon">
+        <div class="metric-card animate__animated animate__fadeInUp" style="animation-delay: 0.3s;">
+          <div class="metric-icon"><i data-lucide="trophy"></i></div>
+          <div class="metric-content">
+            <div class="metric-value">최우수상</div>
+            <div class="metric-label">2026 인간식물환경학회 춘계학술대회</div>
+          </div>
+        </div>
+
+        <div class="metric-card animate__animated animate__fadeInUp" style="animation-delay: 0.45s;">
+          <div class="metric-icon"><i data-lucide="shield-check"></i></div>
+          <div class="metric-content">
+            <div class="metric-value">GA Certified</div>
+            <div class="metric-label">Google Analytics 데이터 공인 자격</div>
+          </div>
+        </div>
+
+        <div class="metric-card animate__animated animate__fadeInUp" style="animation-delay: 0.6s;">
+          <div class="metric-icon"><i data-lucide="sprout"></i></div>
+          <div class="metric-content">
+            <div class="metric-value">그린스마트시티</div>
+            <div class="metric-label">상명대학교 전공 심화 연구</div>
+          </div>
+        </div>
+
+        <div class="metric-card animate__animated animate__fadeInUp" style="animation-delay: 0.75s;">
+          <div class="metric-icon"><i data-lucide="sparkles"></i></div>
+          <div class="metric-content">
+            <div class="metric-value">2005.09.29</div>
+            <div class="metric-label">도전을 두려워하지 않는 젊은 혁신가</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Me Section -->
+  <section class="section about-section" id="about">
+    <div class="container">
+      <div class="section-header" data-animate="animate__fadeInUp">
+        <div class="section-pill"><i data-lucide="compass"></i> About Noh Hyo-ju</div>
+        <h2 class="section-title">자연과 기술의 연결고리, <span class="gradient-text">스마트 그린 비전</span></h2>
+        <p class="section-desc">
+          도시화와 기후 위기 속에서 식물 환경과 스마트 데이터 기술을 융합하여 사람과 자연이 공존하는 공간을 연구합니다.
+        </p>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-card profile-spotlight-card" data-animate="animate__fadeInLeft">
+          <div class="profile-avatar-wrap">
+            <div class="avatar-ring">
+              <div class="avatar-inner">
+                <i data-lucide="flower-2" class="avatar-icon"></i>
+              </div>
+            </div>
+            <div class="avatar-info">
+              <h3 class="profile-name">노효주 <span class="profile-en">Noh Hyo-ju</span></h3>
+              <p class="profile-role">상명대학교 그린스마트시티학과 재학</p>
+              <div class="profile-tags">
+                <span class="tag">#여성</span>
+                <span class="tag">#2005년생</span>
+                <span class="tag">#데이터기반도시설계</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="profile-quote">
+            <i data-lucide="quote" class="quote-icon"></i>
+            <p>
+              "식물이 가진 치유력과 환경 정화 기능을 스마트 시티의 첨단 센서 및 사용자 행동 데이터와 결합할 때, 진정한 지속 가능성이 시작됩니다."
+            </p>
+          </div>
+
+          <div class="profile-contact-list">
+            <div class="contact-item">
+              <i data-lucide="phone-call"></i>
+              <div class="contact-text">
+                <span class="label">연락처</span>
+                <a href="tel:010-2592-0744" class="value link">010-2592-0744</a>
+              </div>
+            </div>
+            <div class="contact-item">
+              <i data-lucide="graduation-cap"></i>
+              <div class="contact-text">
+                <span class="label">학력</span>
+                <span class="value">상명대학교 그린스마트시티학과</span>
+              </div>
+            </div>
+            <div class="contact-item">
+              <i data-lucide="calendar"></i>
+              <div class="contact-text">
+                <span class="label">생년월일</span>
+                <span class="value">2005년 9월 29일</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pillars Grid -->
+        <div class="about-pillars-grid" data-animate="animate__fadeInRight">
+          <div class="pillar-card" data-animate="animate__fadeInUp">
+            <div class="pillar-icon-box color-1">
+              <i data-lucide="tree-pine"></i>
+            </div>
+            <h4>인간-식물-환경 상호작용</h4>
+            <p>도시 속 식물과 원예가 인간의 심리적·생리적 웰빙 및 도심 미기후 조절에 미치는 긍정적 영향을 심층 분석합니다.</p>
+          </div>
+
+          <div class="pillar-card" data-animate="animate__fadeInUp">
+            <div class="pillar-icon-box color-2">
+              <i data-lucide="cpu"></i>
+            </div>
+            <h4>스마트 시티 녹색 인프라</h4>
+            <p>IoT 센서와 스마트 수자원 관리, 수직 정원 및 옥상 녹화를 통한 도심 열섬 현상 완화 솔루션을 탐구합니다.</p>
+          </div>
+
+          <div class="pillar-card" data-animate="animate__fadeInUp">
+            <div class="pillar-icon-box color-3">
+              <i data-lucide="line-chart"></i>
+            </div>
+            <h4>데이터 기반 의사결정</h4>
+            <p>Google Analytics 자격을 갖추고, 정량적 트렌드 분석과 공간 데이터 인사이트를 도출하여 최적의 환경을 기획합니다.</p>
+          </div>
+
+          <div class="pillar-card" data-animate="animate__fadeInUp">
+            <div class="pillar-icon-box color-4">
+              <i data-lucide="globe"></i>
+            </div>
+            <h4>지속 가능한 탄소중립 미래</h4>
+            <p>친환경 스마트 시티 지표를 설계하고 실증적인 도시 생태계 복원 모델을 구축하는 데 기여합니다.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Awards Section -->
+  <section class="section awards-section" id="awards">
+    <div class="container">
+      <div class="section-header" data-animate="animate__fadeInUp">
+        <div class="section-pill gold-pill"><i data-lucide="award"></i> Honors & Awards</div>
+        <h2 class="section-title">학술 연구 성과 <span class="gradient-text-gold">& 수상 내역</span></h2>
+        <p class="section-desc">
+          전문 학술대회에서 연구력과 혁신성을 인정받은 대표 수상 성과입니다.
+        </p>
+      </div>
+
+      <div class="award-spotlight-wrapper" data-animate="animate__zoomIn">
+        <div class="award-card-main glow-gold">
+          <div class="award-badge-top">
+            <span class="trophy-badge animate__animated animate__pulse animate__infinite"><i data-lucide="medal"></i> 최우수상 수상 (Grand Prize)</span>
+            <span class="year-badge">2026</span>
+          </div>
+
+          <div class="award-content-grid">
+            <div class="award-visual">
+              <div class="award-medal-art">
+                <div class="medal-circle animate__animated animate__pulse animate__infinite">
+                  <i data-lucide="trophy" class="large-trophy-icon"></i>
+                </div>
+                <div class="confetti-effect"></div>
+              </div>
+              <div class="award-association">
+                <span class="org-name">사단법인 인간식물환경학회</span>
+                <span class="conf-name">2026 춘계학술대회</span>
+              </div>
+            </div>
+
+            <div class="award-details">
+              <div class="award-category-tag">환경과 원예 분과</div>
+              <h3 class="award-title">2026 인간식물환경학회 춘계학술대회 환경과 원예 최우수상</h3>
+              
+              <p class="award-summary">
+                인간과 식물, 환경의 유기적 관계를 과학적으로 증명하고 스마트 도시 환경에 적용 가능한 혁신적인 원예 생태학적 접근법을 제안하여 학회 최고 영예인 <strong>최우수상</strong>을 수상하였습니다.
+              </p>
+
+              <div class="award-highlights-grid">
+                <div class="highlight-item">
+                  <div class="h-icon"><i data-lucide="check-circle-2"></i></div>
+                  <div>
+                    <strong>융합 연구 역량</strong>
+                    <span>그린스마트시티 전공 지식과 식물환경 분석의 체계적 결합</span>
+                  </div>
+                </div>
+                <div class="highlight-item">
+                  <div class="h-icon"><i data-lucide="check-circle-2"></i></div>
+                  <div>
+                    <strong>실증 데이터 수집</strong>
+                    <span>환경 지표 측정 및 사용자 반응 데이터 기반 신뢰도 높은 연구</span>
+                  </div>
+                </div>
+                <div class="highlight-item">
+                  <div class="h-icon"><i data-lucide="check-circle-2"></i></div>
+                  <div>
+                    <strong>미래 도시 적용성</strong>
+                    <span>스마트 빌딩 및 도시 공공 녹지 공간으로의 확장 가능성 입증</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="award-footer-actions">
+                <button class="btn btn-gold" id="openAwardModalBtn">
+                  <i data-lucide="file-search"></i>
+                  <span>연구 상세 개요 보기</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills & Certifications Section -->
+  <section class="section skills-section" id="skills">
+    <div class="container">
+      <div class="section-header" data-animate="animate__fadeInUp">
+        <div class="section-pill"><i data-lucide="shield-check"></i> Certifications & Competencies</div>
+        <h2 class="section-title">전문 자격 및 <span class="gradient-text">데이터 분석 역량</span></h2>
+        <p class="section-desc">
+          Google Analytics 공인 자격과 환경-도시 융합 기술 역량을 바탕으로 정량적 인사이트를 도출합니다.
+        </p>
+      </div>
+
+      <div class="skills-cert-grid">
+        <!-- GA Card -->
+        <div class="cert-card-special" data-animate="animate__fadeInLeft">
+          <div class="cert-header">
+            <div class="cert-brand-logo">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" class="ga-icon-svg">
+                <path d="M22 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2z" stroke="#F59E0B" stroke-width="1.5"/>
+                <path d="M6 16v-4M10 16V8M14 16v-6M18 16v-2" stroke="#10B981" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="cert-title-wrap">
+              <span class="cert-org">Google Certified</span>
+              <h3 class="cert-title">Google Analytics Certification</h3>
+            </div>
+            <div class="cert-verified-pill">
+              <i data-lucide="badge-check"></i> 공인 자격
+            </div>
+          </div>
+
+          <p class="cert-desc">
+            웹/앱 및 공간 디지털 플랫폼의 사용자 행동 분석, 트래픽 유입 경로 추적, 전환 최적화 및 맞춤형 대시보드 리포팅을 위한 Google의 공식 데이터 분석 전문가 인증입니다.
+          </p>
+
+          <div class="cert-skills-chips">
+            <span class="chip"><i data-lucide="trending-up"></i> 사용자 여정 분석</span>
+            <span class="chip"><i data-lucide="pie-chart"></i> 이벤트 & 전환 트래킹</span>
+            <span class="chip"><i data-lucide="layers"></i> 세그먼트 데이터 마이닝</span>
+            <span class="chip"><i data-lucide="table"></i> 맞춤형 실시간 리포팅</span>
+          </div>
+
+          <div class="ga-feature-box">
+            <div class="box-title"><i data-lucide="lightbulb"></i> 그린스마트시티와의 시너지</div>
+            <p>도시 생태 공간 및 스마트 시티 웹 포털 이용자의 체류 시간, 선호 공간 패턴을 데이터로 정량화하여 맞춤형 생태 인프라 기획에 반영합니다.</p>
+          </div>
+        </div>
+
+        <!-- Technical Competencies -->
+        <div class="tech-competency-card" data-animate="animate__fadeInRight">
+          <h3 class="comp-title"><i data-lucide="sliders"></i> 핵심 직무 역량</h3>
+
+          <div class="skill-meter-group">
+            <div class="skill-meter-item">
+              <div class="skill-label-wrap">
+                <span class="skill-name">그린스마트시티 설계 및 식생 환경 분석</span>
+                <span class="skill-percent">95%</span>
+              </div>
+              <div class="progress-bar-bg">
+                <div class="progress-bar-fill" style="width: 95%;"></div>
+              </div>
+            </div>
+
+            <div class="skill-meter-item">
+              <div class="skill-label-wrap">
+                <span class="skill-name">Google Analytics & 데이터 인사이트 도출</span>
+                <span class="skill-percent">92%</span>
+              </div>
+              <div class="progress-bar-bg">
+                <div class="progress-bar-fill" style="width: 92%;"></div>
+              </div>
+            </div>
+
+            <div class="skill-meter-item">
+              <div class="skill-label-wrap">
+                <span class="skill-name">인간-식물-환경 상관관계 및 웰빙 지표 연구</span>
+                <span class="skill-percent">96%</span>
+              </div>
+              <div class="progress-bar-bg">
+                <div class="progress-bar-fill" style="width: 96%;"></div>
+              </div>
+            </div>
+
+            <div class="skill-meter-item">
+              <div class="skill-label-wrap">
+                <span class="skill-name">도시 미기후 모니터링 및 환경 센싱 기획</span>
+                <span class="skill-percent">88%</span>
+              </div>
+              <div class="progress-bar-bg">
+                <div class="progress-bar-fill" style="width: 88%;"></div>
+              </div>
+            </div>
+
+            <div class="skill-meter-item">
+              <div class="skill-label-wrap">
+                <span class="skill-name">학술 리서치 & 프레젠테이션 (학회 수상 검증)</span>
+                <span class="skill-percent">94%</span>
+              </div>
+              <div class="progress-bar-bg">
+                <div class="progress-bar-fill" style="width: 94%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Live Eco-Data Dashboard Section -->
+  <section class="section dashboard-section" id="dashboard">
+    <div class="container">
+      <div class="section-header" data-animate="animate__fadeInUp">
+        <div class="section-pill"><i data-lucide="activity"></i> Interactive Simulation</div>
+        <h2 class="section-title">스마트 시티 <span class="gradient-text">에코 데이터 시뮬레이터</span></h2>
+        <p class="section-desc">
+          도시 환경 센서 데이터와 GA 사용자 트래픽을 결합한 실시간 시뮬레이션 인터페이스입니다.
+        </p>
+      </div>
+
+      <div class="dashboard-shell" data-animate="animate__fadeInUp">
+        <div class="dash-toolbar">
+          <div class="dash-status">
+            <span class="live-dot"></span>
+            <span>LIVE ENVIRONMENT TELEMETRY</span>
+          </div>
+          <div class="dash-tabs" id="dashTabs">
+            <button class="dash-tab active" data-mode="all">통합 모니터링</button>
+            <button class="dash-tab" data-mode="plant">식생 지수(NDVI)</button>
+            <button class="dash-tab" data-mode="air">도심 대기질(AQI)</button>
+            <button class="dash-tab" data-mode="ga">GA 사용자 트래픽</button>
+          </div>
+        </div>
+
+        <div class="dash-metric-cards-grid">
+          <div class="dash-stat-card" data-animate="animate__fadeInUp" style="animation-delay: 0.1s;">
+            <div class="stat-head">
+              <span>도심 녹피율 & 식생 건강도</span>
+              <i data-lucide="leaf" class="text-emerald"></i>
+            </div>
+            <div class="stat-number" id="valPlant">94.8<span class="stat-unit">%</span></div>
+            <div class="stat-trend positive">
+              <i data-lucide="arrow-up-right"></i> +4.2% 전월 대비 최적화
+            </div>
+          </div>
+
+          <div class="dash-stat-card" data-animate="animate__fadeInUp" style="animation-delay: 0.2s;">
+            <div class="stat-head">
+              <span>바이오 대기 청정 지수</span>
+              <i data-lucide="wind" class="text-teal"></i>
+            </div>
+            <div class="stat-number" id="valAir">98.2<span class="stat-unit">AQI</span></div>
+            <div class="stat-trend positive">
+              <i data-lucide="check"></i> 우수 (식물 정화 효과 실증)
+            </div>
+          </div>
+
+          <div class="dash-stat-card" data-animate="animate__fadeInUp" style="animation-delay: 0.3s;">
+            <div class="stat-head">
+              <span>GA 생태공원 참여 세션</span>
+              <i data-lucide="users" class="text-amber"></i>
+            </div>
+            <div class="stat-number" id="valTraffic">12,480<span class="stat-unit">PV</span></div>
+            <div class="stat-trend positive">
+              <i data-lucide="arrow-up-right"></i> +18.5% 실시간 활성도
+            </div>
+          </div>
+
+          <div class="dash-stat-card" data-animate="animate__fadeInUp" style="animation-delay: 0.4s;">
+            <div class="stat-head">
+              <span>도심 열섬 완화 온도</span>
+              <i data-lucide="thermometer-snowflake" class="text-lime"></i>
+            </div>
+            <div class="stat-number" id="valTemp">-2.8<span class="stat-unit">°C</span></div>
+            <div class="stat-trend positive">
+              <i data-lucide="sparkles"></i> 녹화 기반 쿨링 효과 달성
+            </div>
+          </div>
+        </div>
+
+        <div class="dash-canvas-box">
+          <div class="chart-header">
+            <div class="chart-title-wrap">
+              <span class="chart-title" id="chartTitle">실시간 통합 스마트 시티 환경 & 트래픽 파동 분석</span>
+              <span class="chart-subtitle">센서 갱신 주기: 2.0s | GA 실시간 스트림 연결됨</span>
+            </div>
+            <button class="btn btn-sm btn-glass" id="triggerPulseBtn">
+              <i data-lucide="refresh-cw"></i> 데이터 갱신
+            </button>
+          </div>
+          <canvas id="liveTelemetryCanvas" height="220"></canvas>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects / Vision Section -->
+  <section class="section projects-section" id="projects">
+    <div class="container">
+      <div class="section-header" data-animate="animate__fadeInUp">
+        <div class="section-pill"><i data-lucide="folder-git-2"></i> Vision & Projects</div>
+        <h2 class="section-title">스마트 그린 시티 <span class="gradient-text">연구 & 프로젝트</span></h2>
+        <p class="section-desc">
+          학업 및 학회 수상 성과를 바탕으로 확장해 나가는 미래 지향적 연구 프로젝트입니다.
+        </p>
+      </div>
+
+      <div class="projects-grid">
+        <!-- Project 1 -->
+        <div class="project-card" data-animate="animate__fadeInUp" style="animation-delay: 0.15s;">
+          <div class="project-img-banner banner-1">
+            <div class="banner-overlay"></div>
+            <div class="project-tag">학술 대회 최우수상 연계</div>
+            <div class="banner-icon-float"><i data-lucide="sprout"></i></div>
+          </div>
+          <div class="project-body">
+            <h3 class="project-title">인간-식물 상호작용 기반 스마트 힐링 가든 분석</h3>
+            <p class="project-summary">
+              2026 인간식물환경학회 최우수상 수상작으로, 도심 거주민의 스트레스 완화 및 환경 만족도를 실측 데이터로 분석하여 최적의 식재 디자인 모델을 도출했습니다.
+            </p>
+            <div class="project-tech-tags">
+              <span>환경과 원예</span>
+              <span>식물 생리 지표</span>
+              <span>통계 분석</span>
+              <span>스마트 공간 설계</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project-card" data-animate="animate__fadeInUp" style="animation-delay: 0.3s;">
+          <div class="project-img-banner banner-2">
+            <div class="banner-overlay"></div>
+            <div class="project-tag">Google Analytics 융합</div>
+            <div class="banner-icon-float"><i data-lucide="bar-chart"></i></div>
+          </div>
+          <div class="project-body">
+            <h3 class="project-title">GA 기반 도시 공공 생태 공원 동선 & 이용도 최적화</h3>
+            <p class="project-summary">
+              도시 녹지 플랫폼에 Google Analytics 트래킹 기법을 적용하여 시민들의 공원 방문 동선, 체류 시간, 선호 녹지 구역을 시각화하고 유지관리 효율을 증대시켰습니다.
+            </p>
+            <div class="project-tech-tags">
+              <span>Google Analytics</span>
+              <span>사용자 여정 맵핑</span>
+              <span>데이터 시각화</span>
+              <span>스마트 파크</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="project-card" data-animate="animate__fadeInUp" style="animation-delay: 0.45s;">
+          <div class="project-img-banner banner-3">
+            <div class="banner-overlay"></div>
+            <div class="project-tag">스마트 시티 인프라</div>
+            <div class="banner-icon-float"><i data-lucide="building-2"></i></div>
+          </div>
+          <div class="project-body">
+            <h3 class="project-title">도심 열섬 완화를 위한 스마트 수직정원 & 미기후 모델링</h3>
+            <p class="project-summary">
+              빌딩 외벽 및 도심 가로에 IoT 기반 자동 관수와 식생 모니터링을 결합하여 평균 기온을 2.8°C 이상 저감시키는 스마트 그린 인프라 구축안입니다.
+            </p>
+            <div class="project-tech-tags">
+              <span>그린스마트시티</span>
+              <span>IoT 센싱</span>
+              <span>미기후 시뮬레이션</span>
+              <span>탄소중립</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact & Connect Section -->
+  <section class="section contact-section" id="contact">
+    <div class="container">
+      <div class="section-header" data-animate="animate__fadeInUp">
+        <div class="section-pill"><i data-lucide="send"></i> Get in Touch</div>
+        <h2 class="section-title">함께 미래를 만들어갈 <span class="gradient-text">소중한 연결</span></h2>
+        <p class="section-desc">
+          연구 협업, 프로젝트 제안, 학술 교류 등 언제든 편하게 연락 주시기 바랍니다.
+        </p>
+      </div>
+
+      <div class="contact-card-grid">
+        <div class="contact-info-panel" data-animate="animate__fadeInLeft">
+          <h3>Contact Info</h3>
+          <p>새로운 가능성과 친환경 스마트 시티의 내일을 위해 늘 열려 있습니다.</p>
+
+          <div class="info-items-stack">
+            <div class="info-box">
+              <div class="i-icon"><i data-lucide="user-check"></i></div>
+              <div class="i-details">
+                <span class="i-label">성명</span>
+                <span class="i-val">노효주 (Noh Hyo-ju)</span>
+              </div>
+            </div>
+
+            <div class="info-box">
+              <div class="i-icon"><i data-lucide="phone"></i></div>
+              <div class="i-details">
+                <span class="i-label">전화번호</span>
+                <a href="tel:010-2592-0744" class="i-val link">010-2592-0744</a>
+              </div>
+              <button class="mini-copy-btn copy-phone-btn" data-phone="010-2592-0744" title="번호 복사">
+                <i data-lucide="copy"></i>
+              </button>
+            </div>
+
+            <div class="info-box">
+              <div class="i-icon"><i data-lucide="school"></i></div>
+              <div class="i-details">
+                <span class="i-label">소속</span>
+                <span class="i-val">상명대학교 그린스마트시티학과</span>
+              </div>
+            </div>
+
+            <div class="info-box">
+              <div class="i-icon"><i data-lucide="award"></i></div>
+              <div class="i-details">
+                <span class="i-label">주요 이력</span>
+                <span class="i-val">2026 인간식물환경학회 최우수상 / GA 자격</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="direct-cta-box">
+            <a href="tel:010-2592-0744" class="btn btn-primary w-full">
+              <i data-lucide="phone-call"></i>
+              <span>지금 전화로 연결하기</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Quick Message Simulation Form -->
+        <div class="contact-form-panel" data-animate="animate__fadeInRight">
+          <h3>온라인 메시지 남기기</h3>
+          <form id="contactForm" class="contact-form">
+            <div class="form-group">
+              <label for="senderName">성함 / 기업(기관)명</label>
+              <div class="input-wrap">
+                <i data-lucide="user"></i>
+                <input type="text" id="senderName" required placeholder="홍길동 / 스마트그린랩">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="senderContact">회신 연락처 또는 이메일</label>
+              <div class="input-wrap">
+                <i data-lucide="mail"></i>
+                <input type="text" id="senderContact" required placeholder="010-0000-0000 또는 email@domain.com">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="senderMessage">제안 및 문의 내용</label>
+              <div class="input-wrap textarea-wrap">
+                <textarea id="senderMessage" rows="4" required placeholder="프로젝트 제안, 학술 교류, 채용 문의 등 자유롭게 남겨주세요."></textarea>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-gold w-full" id="submitMsgBtn">
+              <i data-lucide="send"></i>
+              <span>메시지 전송하기</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-container">
+      <div class="footer-left">
+        <div class="footer-logo">
+          <i data-lucide="leaf"></i>
+          <span>HYOJU.NOH</span>
+        </div>
+        <p class="footer-copy">© 2026 노효주 (Noh Hyo-ju). All rights reserved. | Green Smart City & Data Analytics</p>
+      </div>
+
+      <div class="footer-right">
+        <button class="back-to-top-btn" id="backToTopBtn" aria-label="맨 위로 가기">
+          <i data-lucide="arrow-up"></i>
+        </button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toast">
+    <i data-lucide="check-circle" class="toast-icon"></i>
+    <span class="toast-msg" id="toastMsg">클립보드에 복사되었습니다!</span>
+  </div>
+
+  <!-- Modal 1: Award Research Details Modal -->
+  <div class="modal-overlay" id="awardModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-title-group">
+          <div class="modal-badge"><i data-lucide="award"></i> 학술 대회 최우수상</div>
+          <h3>2026 인간식물환경학회 춘계학술대회 연구 개요</h3>
+        </div>
+        <button class="modal-close-btn" id="closeAwardModalBtn" aria-label="닫기">
+          <i data-lucide="x"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="award-modal-info-box">
+          <div class="row">
+            <span class="label">학술대회:</span>
+            <span class="value">2026 (사)인간식물환경학회 춘계학술대회</span>
+          </div>
+          <div class="row">
+            <span class="label">분과 및 상격:</span>
+            <span class="value text-gold">환경과 원예 분과 최우수상 (Grand Prize)</span>
+          </div>
+          <div class="row">
+            <span class="label">연구자:</span>
+            <span class="value">노효주 (상명대학교 그린스마트시티학과)</span>
+          </div>
+        </div>
+
+        <h4 class="modal-section-h4"><i data-lucide="book-open"></i> 연구 배경 및 필요성</h4>
+        <p class="modal-text">
+          기후 변화와 급격한 도시화로 인한 도심 열섬 현상, 대기오염, 그리고 도시민의 심리적 고립감이 심화되는 상황에서, 스마트 그린 인프라와 원예 식생의 정량적 치유 및 환경 개선 효과를 입증하고자 연구를 수행했습니다.
+        </p>
+
+        <h4 class="modal-section-h4"><i data-lucide="cpu"></i> 주요 연구 내용 및 융합 분석</h4>
+        <ul class="modal-list">
+          <li><strong>환경 지표 실측:</strong> IoT 센서를 활용한 온도 저감, 습도 조절, 미세먼지 흡착률 실시간 모니터링</li>
+          <li><strong>인간-식물 상호작용 검증:</strong> 원예 녹화 공간 체험 전후의 뇌파/자율신경계 안정 지표 및 설문 데이터 분석</li>
+          <li><strong>스마트 시티 확장 모델:</strong> 수집된 데이터 패턴을 기반으로 건축물 및 공공 공간에 최적화된 식재 모듈 제안</li>
+        </ul>
+
+        <h4 class="modal-section-h4"><i data-lucide="check-circle"></i> 심사위원 평가 및 의의</h4>
+        <p class="modal-text">
+          "학부생 수준을 뛰어넘는 체계적인 데이터 분석력과 그린스마트시티 전공을 살린 실용적인 솔루션 제시가 돋보인 탁월한 연구"라는 최고 평가를 받으며 최우수상의 영예를 안았습니다.
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" id="closeAwardModalBtn2">닫기</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 2: Resume / Profile View & Print Modal -->
+  <div class="modal-overlay" id="resumeModal">
+    <div class="modal-card resume-modal-card">
+      <div class="modal-header">
+        <div class="modal-title-group">
+          <div class="modal-badge"><i data-lucide="file-text"></i> 이력서 (Curriculum Vitae)</div>
+          <h3>노효주 인재 정보 요약</h3>
+        </div>
+        <button class="modal-close-btn" id="closeResumeModalBtn" aria-label="닫기">
+          <i data-lucide="x"></i>
+        </button>
+      </div>
+      <div class="modal-body printable-cv" id="printableCv">
+        <div class="cv-header">
+          <div>
+            <h2 class="cv-name">노효주 <span class="cv-gender">(여성 / 2005.09.29)</span></h2>
+            <p class="cv-sub">상명대학교 그린스마트시티학과 재학 | 데이터 분석 & 환경 원예 연구</p>
+          </div>
+          <div class="cv-contact-box">
+            <div><strong>연락처:</strong> 010-2592-0744</div>
+            <div><strong>전공:</strong> 그린스마트시티학</div>
+          </div>
+        </div>
+
+        <hr class="cv-divider">
+
+        <div class="cv-section">
+          <h4><i data-lucide="graduation-cap"></i> 학력 사항</h4>
+          <div class="cv-entry">
+            <span class="cv-date">재학 중</span>
+            <div class="cv-entry-main">
+              <strong>상명대학교 (Sangmyung University)</strong>
+              <p>그린스마트시티학과 (Department of Green Smart City)</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="cv-section">
+          <h4><i data-lucide="trophy"></i> 수상 내역</h4>
+          <div class="cv-entry">
+            <span class="cv-date">2026년</span>
+            <div class="cv-entry-main">
+              <strong>2026 인간식물환경학회 춘계학술대회 최우수상</strong>
+              <p>환경과 원예 분과 최고상 수상 (사단법인 인간식물환경학회)</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="cv-section">
+          <h4><i data-lucide="shield-check"></i> 자격 및 어학 / 보유 기술</h4>
+          <div class="cv-entry">
+            <span class="cv-date">취득</span>
+            <div class="cv-entry-main">
+              <strong>Google Analytics Certification</strong>
+              <p>Google 공인 데이터 분석 및 웹/앱 트래픽 인사이트 자격 보유</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="cv-section">
+          <h4><i data-lucide="target"></i> 핵심 역량 요약</h4>
+          <ul class="cv-bullet-list">
+            <li>스마트 시티 녹색 인프라 및 도심 원예 환경 설계</li>
+            <li>Google Analytics를 활용한 정량적 데이터 측정 및 사용자 행동 패턴 분석</li>
+            <li>학술 논문 작성, 리서치 및 학회 발표 역량 (최우수상 검증)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" onclick="window.print()">
+          <i data-lucide="printer"></i>
+          <span>이력서 인쇄 / PDF 저장</span>
+        </button>
+        <button class="btn btn-outline" id="closeResumeModalBtn2">닫기</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 3: Mobile Business Card QR Modal -->
+  <div class="modal-overlay" id="qrModal">
+    <div class="modal-card qr-modal-card">
+      <div class="modal-header">
+        <div class="modal-title-group">
+          <div class="modal-badge"><i data-lucide="smartphone"></i> 모바일 명함</div>
+          <h3>노효주 모바일 vCard</h3>
+        </div>
+        <button class="modal-close-btn" id="closeQrModalBtn" aria-label="닫기">
+          <i data-lucide="x"></i>
+        </button>
+      </div>
+      <div class="modal-body qr-modal-body">
+        <div class="qr-code-box">
+          <div class="qr-canvas-wrap">
+            <canvas id="qrCodeCanvas" width="180" height="180"></canvas>
+          </div>
+          <p class="qr-inst">스마트폰 카메라로 스캔하여 연락처를 바로 저장하세요.</p>
+        </div>
+
+        <div class="vcard-quick-info">
+          <p><strong>성명:</strong> 노효주</p>
+          <p><strong>연락처:</strong> <a href="tel:010-2592-0744">010-2592-0744</a></p>
+          <p><strong>소속:</strong> 상명대학교 그린스마트시티학과</p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" id="closeQrModalBtn2">닫기</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>
