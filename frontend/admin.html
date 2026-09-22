@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>관리자 페이지</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+<div id="loginScreen" class="admin-login-wrap">
+  <form id="loginForm" class="admin-login-card">
+    <h1>관리자 로그인</h1>
+    <p class="admin-hint">비밀번호를 입력하세요.</p>
+    <input type="password" id="loginPassword" placeholder="비밀번호" autocomplete="off" required>
+    <button type="submit" class="btn btn-primary">로그인</button>
+    <p id="loginError" class="admin-error" hidden></p>
+  </form>
+</div>
+
+<div id="adminPanel" class="admin-panel" hidden>
+  <header class="admin-header">
+    <h1>프로젝트 관리</h1>
+    <button id="logoutBtn" class="btn btn-outline btn-sm">로그아웃</button>
+  </header>
+
+  <section id="duplicateBanner" class="admin-duplicate-banner" hidden>
+    <h2>중복 의심 프로젝트</h2>
+    <div id="duplicateList"></div>
+  </section>
+
+  <section class="admin-form-section">
+    <h2 id="formTitle">새 프로젝트 추가</h2>
+    <form id="projectForm" class="admin-form">
+      <input type="hidden" id="projectId">
+
+      <label>제목
+        <input type="text" id="fieldTitle" placeholder="예: 용맥(龍脈) 도시숲 생태 네트워크 설계">
+      </label>
+
+      <label>내가 한 역할
+        <input type="text" id="fieldRole" placeholder="예: 데이터 분석 및 공간 설계 담당">
+      </label>
+
+      <label>설명
+        <textarea id="fieldDescription" rows="4" placeholder="예: 어떤 문제를 발견했고, 어떤 데이터로 어떻게 해결했는지 적어주세요."></textarea>
+      </label>
+
+      <label>날짜
+        <input type="text" id="fieldDate" placeholder="예: 2026-03-15">
+      </label>
+
+      <label>참여인원수
+        <input type="text" id="fieldMemberCount" placeholder="예: 4명">
+      </label>
+
+      <label>참고사항 <span class="admin-optional">(선택)</span>
+        <textarea id="fieldNote" rows="2" placeholder="예: 팀 프로젝트이며 본인은 데이터 분석 파트를 담당함"></textarea>
+      </label>
+
+      <fieldset class="admin-status-fieldset">
+        <legend>공개 상태</legend>
+        <label class="admin-radio"><input type="radio" name="status" value="draft" checked> 초안 (나만 볼 수 있음)</label>
+        <label class="admin-radio"><input type="radio" name="status" value="published"> 공개 (웹사이트에 표시됨)</label>
+      </fieldset>
+
+      <p id="formError" class="admin-error" hidden></p>
+
+      <div class="admin-form-actions">
+        <button type="submit" class="btn btn-primary">저장</button>
+        <button type="button" id="resetFormBtn" class="btn btn-outline">새로 작성</button>
+      </div>
+    </form>
+  </section>
+
+  <section class="admin-list-section">
+    <h2>전체 프로젝트 목록</h2>
+    <div id="projectList" class="admin-project-list"></div>
+  </section>
+</div>
+
+<script src="admin.js"></script>
+</body>
+</html>

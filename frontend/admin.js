@@ -1,0 +1,255 @@
+(() => {
+  // 세션 토큰은 메모리 변수에만 둔다. localStorage/sessionStorage에 저장하지 않으므로
+  // 창을 닫거나 새로고침하면 무조건 사라지고, 다시 들어오면 항상 로그인해야 한다.
+  let authToken = null;
+  let editingId = null;
+
+  const loginScreen = document.getElementById("loginScreen");
+  const adminPanel = document.getElementById("adminPanel");
+  const loginForm = document.getElementById("loginForm");
+  const loginError = document.getElementById("loginError");
+
+  const projectForm = document.getElementById("projectForm");
+  const formTitle = document.getElementById("formTitle");
+  const formError = document.getElementById("formError");
+  const projectList = document.getElementById("projectList");
+  const duplicateBanner = document.getElementById("duplicateBanner");
+  const duplicateList = document.getElementById("duplicateList");
+
+  const fields = {
+    title: document.getElementById("fieldTitle"),
+    role: document.getElementById("fieldRole"),
+    description: document.getElementById("fieldDescription"),
+    date: document.getElementById("fieldDate"),
+    memberCount: document.getElementById("fieldMemberCount"),
+    note: document.getElementById("fieldNote"),
+  };
+
+  const REQUIRED_FIELDS = ["title", "role", "description", "date", "memberCount"];
+
+  function showLogin() {
+    authToken = null;
+    loginScreen.hidden = false;
+    adminPanel.hidden = true;
+  }
+
+  function showPanel() {
+    loginScreen.hidden = true;
+    adminPanel.hidden = false;
+  }
+
+  async function api(path, options = {}) {
+    const res = await fetch(path, {
+      ...options,
+      headers: {
+        "Content-Type": "application/json",
+        ...(authToken ? { Authorization: `Bearer ${authToken}` } : {}),
+        ...(options.headers || {}),
+      },
+    });
+
+    if (res.status === 401) {
+      showLogin();
+      throw new Error("로그인이 만료되었습니다. 다시 로그인해주세요.");
+    }
+
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok || data.ok === false) {
+      throw new Error(data.error || "요청 처리 중 오류가 발생했습니다.");
+    }
+    return data;
+  }
+
+  loginForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    loginError.hidden = true;
+    const password = document.getElementById("loginPassword").value;
+
+    try {
+      const res = await fetch("/api/admin/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ password }),
+      });
+      const data = await res.json();
+      if (!res.ok || !data.ok) throw new Error(data.error || "로그인에 실패했습니다.");
+
+      authToken = data.token;
+      document.getElementById("loginPassword").value = "";
+      showPanel();
+      loadAll();
+    } catch (err) {
+      loginError.textContent = err.message;
+      loginError.hidden = false;
+    }
+  });
+
+  document.getElementById("logoutBtn").addEventListener("click", async () => {
+    try {
+      await api("/api/admin/logout", { method: "POST" });
+    } catch (_) {
+      // 로그아웃 요청 실패해도 클라이언트 쪽 세션은 지운다.
+    }
+    showLogin();
+  });
+
+  function resetForm() {
+    editingId = null;
+    projectForm.reset();
+    formTitle.textContent = "새 프로젝트 추가";
+    formError.hidden = true;
+  }
+
+  document.getElementById("resetFormBtn").addEventListener("click", resetForm);
+
+  function getFormData() {
+    const status = projectForm.querySelector('input[name="status"]:checked').value;
+    return {
+      title: fields.title.value.trim(),
+      role: fields.role.value.trim(),
+      description: fields.description.value.trim(),
+      date: fields.date.value.trim(),
+      memberCount: fields.memberCount.value.trim(),
+      note: fields.note.value.trim(),
+      status,
+    };
+  }
+
+  function validate(data) {
+    if (data.status === "published") {
+      for (const f of REQUIRED_FIELDS) {
+        if (!data[f]) return "공개하려면 참고사항을 제외한 모든 항목을 입력해야 합니다.";
+      }
+    }
+    return null;
+  }
+
+  projectForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    formError.hidden = true;
+
+    const data = getFormData();
+    const clientError = validate(data);
+    if (clientError) {
+      formError.textContent = clientError;
+      formError.hidden = false;
+      return;
+    }
+
+    try {
+      if (editingId) {
+        await api(`/api/admin/projects/${editingId}`, { method: "PUT", body: JSON.stringify(data) });
+      } else {
+        await api("/api/admin/projects", { method: "POST", body: JSON.stringify(data) });
+      }
+      resetForm();
+      loadAll();
+    } catch (err) {
+      formError.textContent = err.message;
+      formError.hidden = false;
+    }
+  });
+
+  function fillFormForEdit(project) {
+    editingId = project.id;
+    formTitle.textContent = "프로젝트 수정";
+    fields.title.value = project.title;
+    fields.role.value = project.role;
+    fields.description.value = project.description;
+    fields.date.value = project.date;
+    fields.memberCount.value = project.memberCount;
+    fields.note.value = project.note;
+    projectForm.querySelector(`input[name="status"][value="${project.status}"]`).checked = true;
+    formError.hidden = true;
+    projectForm.scrollIntoView({ behavior: "smooth" });
+  }
+
+  async function deleteProject(id) {
+    if (!confirm("이 프로젝트를 삭제할까요? 되돌릴 수 없습니다.")) return;
+    try {
+      await api(`/api/admin/projects/${id}`, { method: "DELETE" });
+      loadAll();
+    } catch (err) {
+      alert(err.message);
+    }
+  }
+
+  function renderProjectList(projects) {
+    projectList.innerHTML = "";
+    if (projects.length === 0) {
+      projectList.innerHTML = '<p style="color:var(--text-muted)">등록된 프로젝트가 없습니다.</p>';
+      return;
+    }
+
+    for (const p of projects) {
+      const item = document.createElement("div");
+      item.className = "admin-project-item";
+      item.innerHTML = `
+        <div class="info">
+          <h3>
+            <span class="admin-status-badge ${p.status}">${p.status === "published" ? "공개" : "초안"}</span>
+            ${escapeHtml(p.title || "(제목 없음)")}
+          </h3>
+          <p>${escapeHtml(p.role || "")} · ${escapeHtml(p.date || "")} · ${escapeHtml(p.memberCount || "")}</p>
+        </div>
+        <div class="actions">
+          <button class="btn btn-sm btn-outline" data-action="edit">수정</button>
+          <button class="btn btn-sm btn-outline" data-action="delete">삭제</button>
+        </div>
+      `;
+      item.querySelector('[data-action="edit"]').addEventListener("click", () => fillFormForEdit(p));
+      item.querySelector('[data-action="delete"]').addEventListener("click", () => deleteProject(p.id));
+      projectList.appendChild(item);
+    }
+  }
+
+  function renderDuplicates(groups) {
+    if (!groups || groups.length === 0) {
+      duplicateBanner.hidden = true;
+      return;
+    }
+    duplicateBanner.hidden = false;
+    duplicateList.innerHTML = "";
+
+    for (const group of groups) {
+      const groupEl = document.createElement("div");
+      groupEl.className = "admin-duplicate-group";
+      groupEl.innerHTML = `<p style="color:var(--text-muted);margin-bottom:8px;">같은 제목의 프로젝트 ${group.length}건이 있습니다. 필요 없는 항목을 삭제해서 정리하세요.</p>`;
+
+      for (const p of group) {
+        const row = document.createElement("div");
+        row.className = "dup-item";
+        row.innerHTML = `
+          <span>${escapeHtml(p.title)} (${p.status === "published" ? "공개" : "초안"}, ${escapeHtml(p.date || "날짜 없음")})</span>
+          <button class="btn btn-sm btn-outline" data-action="delete-dup">이 항목 삭제</button>
+        `;
+        row.querySelector('[data-action="delete-dup"]').addEventListener("click", () => deleteProject(p.id));
+        groupEl.appendChild(row);
+      }
+      duplicateList.appendChild(groupEl);
+    }
+  }
+
+  function escapeHtml(str) {
+    const div = document.createElement("div");
+    div.textContent = str;
+    return div.innerHTML;
+  }
+
+  async function loadAll() {
+    try {
+      const [listRes, dupRes] = await Promise.all([
+        api("/api/admin/projects"),
+        api("/api/admin/projects/duplicates/list"),
+      ]);
+      renderProjectList(listRes.projects);
+      renderDuplicates(dupRes.groups);
+    } catch (err) {
+      // 401은 api()에서 이미 로그인 화면으로 돌려보낸다.
+      console.error(err);
+    }
+  }
+
+  // 페이지를 새로 열거나 새로고침하면 항상 로그인 화면부터 시작한다.
+  showLogin();
+})();

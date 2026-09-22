@@ -1,15 +1,25 @@
 require("dotenv").config();
 
+const path = require("path");
 const express = require("express");
 const cors = require("cors");
 const { connectDB } = require("./config/db");
 const contactRouter = require("./routes/contact");
+const projectsRouter = require("./routes/projects");
+const adminAuthRouter = require("./routes/adminAuth");
+const adminProjectsRouter = require("./routes/adminProjects");
+const { useSupabase } = require("./data/store");
 
 const app = express();
 const PORT = process.env.PORT || 4000;
+const FRONTEND_DIR = path.join(__dirname, "..", "frontend");
 
 app.use(cors());
 app.use(express.json());
+
+// 개발 중 프론트엔드/백엔드를 한 번에 켜서 볼 수 있도록 정적 파일도 함께 제공한다.
+// (frontend, backend 폴더 구조 자체는 분리된 상태 그대로 유지)
+app.use(express.static(FRONTEND_DIR));
 
 // 프론트엔드에서 연결 상태를 확인할 수 있는 헬스체크
 app.get("/api/health", (req, res) => {
@@ -17,12 +27,20 @@ app.get("/api/health", (req, res) => {
 });
 
 app.use("/api/contact", contactRouter);
+app.use("/api/projects", projectsRouter);
+app.use("/api/admin", adminAuthRouter);
+app.use("/api/admin/projects", adminProjectsRouter);
 
-async function start() {
-  await connectDB(); // DATABASE_URL이 없으면 연결을 건너뛰고 계속 진행한다.
-  app.listen(PORT, () => {
-    console.log(`[server] http://localhost:${PORT} 에서 실행 중`);
-  });
+// `node server.js`로 직접 실행할 때만 포트를 열어 서버를 띄운다.
+// Vercel 서버리스 환경에서는 이 파일을 함수로만 불러쓰기 때문에 listen하지 않는다.
+if (require.main === module) {
+  (async () => {
+    await connectDB(); // DATABASE_URL이 없으면 연결을 건너뛰고 계속 진행한다.
+    app.listen(PORT, () => {
+      console.log(`[server] http://localhost:${PORT} 에서 실행 중`);
+      console.log(`[projects] 저장소: ${useSupabase ? "Supabase(DB)" : "로컬 JSON 파일"}`);
+    });
+  })();
 }
 
-start();
+module.exports = app;

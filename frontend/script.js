@@ -16,6 +16,9 @@ document.addEventListener("DOMContentLoaded", () => {
   // 3. Theme Toggle (Dark / Light)
   initThemeToggle();
 
+  // 3-1. Project Card Details
+  initProjectDetails();
+
   // 4. Hero Particle Canvas Animation
   initHeroCanvas();
 
@@ -40,6 +43,24 @@ document.addEventListener("DOMContentLoaded", () => {
   // 11. Generate QR Code Canvas for vCard
   drawQrCode();
 });
+
+function initProjectDetails() {
+  const toggleButtons = document.querySelectorAll(".project-detail-toggle");
+
+  toggleButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const detailId = button.getAttribute("aria-controls");
+      const details = document.getElementById(detailId);
+      if (!details) return;
+
+      const isOpen = button.getAttribute("aria-expanded") === "true";
+      button.setAttribute("aria-expanded", String(!isOpen));
+      details.hidden = isOpen;
+      button.querySelector("span").textContent = isOpen ? "자세히 보기" : "접기";
+      button.classList.toggle("is-open", !isOpen);
+    });
+  });
+}
 
 /* ==========================================================================
    1. Animate.css Scroll Observer
@@ -74,7 +95,7 @@ function initThemeToggle() {
   const toggleBtn = document.getElementById("themeToggle");
   const html = document.documentElement;
   
-  const savedTheme = localStorage.getItem("hyoju_portfolio_theme") || "dark";
+  const savedTheme = localStorage.getItem("hyoju_portfolio_theme_v2") || "light";
   html.setAttribute("data-theme", savedTheme);
 
   if (toggleBtn) {
@@ -82,7 +103,7 @@ function initThemeToggle() {
       const currentTheme = html.getAttribute("data-theme");
       const newTheme = currentTheme === "dark" ? "light" : "dark";
       html.setAttribute("data-theme", newTheme);
-      localStorage.setItem("hyoju_portfolio_theme", newTheme);
+      localStorage.setItem("hyoju_portfolio_theme_v2", newTheme);
 
       // Add a quick spin animation on theme toggle
       toggleBtn.classList.add("animate__animated", "animate__rotateIn");
@@ -305,7 +326,7 @@ function initLiveTelemetryDashboard() {
     const stepX = (w - padding * 2) / (pointCount - 1);
 
     // Draw Grid Lines
-    ctx.strokeStyle = "rgba(255, 255, 255, 0.05)";
+    ctx.strokeStyle = "rgba(107, 114, 128, 0.18)";
     ctx.lineWidth = 1;
     for (let i = 0; i <= 4; i++) {
       const y = padding + (i * (h - padding * 2)) / 4;
@@ -339,23 +360,23 @@ function initLiveTelemetryDashboard() {
 
     if (currentMode === "all" || currentMode === "plant") {
       const gradA = ctx.createLinearGradient(0, 0, 0, h);
-      gradA.addColorStop(0, "rgba(16, 185, 129, 0.35)");
-      gradA.addColorStop(1, "rgba(16, 185, 129, 0.0)");
-      drawSeries(seriesA, "#10b981", gradA);
+      gradA.addColorStop(0, "rgba(75, 85, 99, 0.24)");
+      gradA.addColorStop(1, "rgba(75, 85, 99, 0.0)");
+      drawSeries(seriesA, "#4b5563", gradA);
     }
 
     if (currentMode === "all" || currentMode === "ga") {
       const gradB = ctx.createLinearGradient(0, 0, 0, h);
-      gradB.addColorStop(0, "rgba(245, 158, 11, 0.35)");
-      gradB.addColorStop(1, "rgba(245, 158, 11, 0.0)");
-      drawSeries(seriesB, "#f59e0b", gradB);
+      gradB.addColorStop(0, "rgba(156, 163, 175, 0.3)");
+      gradB.addColorStop(1, "rgba(156, 163, 175, 0.0)");
+      drawSeries(seriesB, "#9ca3af", gradB);
     }
 
     if (currentMode === "air") {
       const gradAir = ctx.createLinearGradient(0, 0, 0, h);
-      gradAir.addColorStop(0, "rgba(20, 184, 166, 0.4)");
-      gradAir.addColorStop(1, "rgba(20, 184, 166, 0.0)");
-      drawSeries(seriesA.map(v => v * 1.1), "#14b8a6", gradAir);
+      gradAir.addColorStop(0, "rgba(31, 41, 55, 0.22)");
+      gradAir.addColorStop(1, "rgba(31, 41, 55, 0.0)");
+      drawSeries(seriesA.map(v => v * 1.1), "#1f2937", gradAir);
     }
 
     // Glow head dot
@@ -363,10 +384,10 @@ function initLiveTelemetryDashboard() {
     const lastY = h - padding - (seriesA[seriesA.length - 1] / 100) * (h - padding * 2);
     ctx.beginPath();
     ctx.arc(lastX, lastY, 5, 0, Math.PI * 2);
-    ctx.fillStyle = "#34d399";
+    ctx.fillStyle = "#4b5563";
     ctx.fill();
     ctx.shadowBlur = 10;
-    ctx.shadowColor = "#34d399";
+    ctx.shadowColor = "#9ca3af";
   }
 
   function chartLoop() {
@@ -431,6 +452,9 @@ function initModals() {
 
   // QR Modal
   setupModal("qrModal", ["openQrBtn"], ["closeQrModalBtn", "closeQrModalBtn2"]);
+
+  // Urban Forest Panel Modal
+  setupModal("panelModal", ["openPanelModalBtn"], ["closePanelModalBtn", "closePanelModalBtn2"]);
 
   // Escape key closes any active modal
   window.addEventListener("keydown", (e) => {
