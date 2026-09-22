@@ -60,6 +60,12 @@
         <textarea id="fieldNote" rows="2" placeholder="예: 팀 프로젝트이며 본인은 데이터 분석 파트를 담당함"></textarea>
       </label>
 
+      <label>영상 <span class="admin-optional">(선택)</span>
+        <input type="file" id="fieldVideoFile" accept="video/*">
+        <input type="hidden" id="fieldVideoUrl">
+        <p id="videoUploadStatus" class="admin-video-status"></p>
+      </label>
+
       <fieldset class="admin-status-fieldset">
         <legend>공개 상태</legend>
         <label class="admin-radio"><input type="radio" name="status" value="draft" checked> 초안 (나만 볼 수 있음)</label>

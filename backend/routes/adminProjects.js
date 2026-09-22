@@ -29,6 +29,7 @@ router.post("/", async (req, res) => {
     date: body.date || "",
     memberCount: body.memberCount || "",
     note: body.note || "",
+    videoUrl: body.videoUrl || "",
     status: body.status === "published" ? "published" : "draft",
     createdAt: now,
     updatedAt: now,
@@ -59,6 +60,7 @@ router.put("/:id", async (req, res) => {
     date: body.date ?? existing.date,
     memberCount: body.memberCount ?? existing.memberCount,
     note: body.note ?? existing.note,
+    videoUrl: body.videoUrl ?? existing.videoUrl,
     status: body.status === "published" ? "published" : "draft",
     updatedAt: new Date().toISOString(),
   };

@@ -7,6 +7,7 @@ create table if not exists projects (
   date text not null default '',
   member_count text not null default '',
   note text not null default '',
+  video_url text not null default '',
   status text not null default 'draft',
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()

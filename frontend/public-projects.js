@@ -13,6 +13,7 @@
       .map(
         (p) => `
       <div class="project-card">
+        ${p.videoUrl ? `<video src="${escapeHtml(p.videoUrl)}" controls preload="metadata" style="width:100%;border-radius:12px 12px 0 0;display:block;"></video>` : ""}
         <div class="project-body">
           <h3 class="project-title">${escapeHtml(p.title)}</h3>
           <p class="project-summary">${escapeHtml(p.description)}</p>

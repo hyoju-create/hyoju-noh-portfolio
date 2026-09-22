@@ -23,7 +23,10 @@
     date: document.getElementById("fieldDate"),
     memberCount: document.getElementById("fieldMemberCount"),
     note: document.getElementById("fieldNote"),
+    videoUrl: document.getElementById("fieldVideoUrl"),
   };
+  const videoFileInput = document.getElementById("fieldVideoFile");
+  const videoUploadStatus = document.getElementById("videoUploadStatus");
 
   const REQUIRED_FIELDS = ["title", "role", "description", "date", "memberCount"];
 
@@ -98,9 +101,34 @@
     projectForm.reset();
     formTitle.textContent = "새 프로젝트 추가";
     formError.hidden = true;
+    fields.videoUrl.value = "";
+    videoUploadStatus.textContent = "";
   }
 
   document.getElementById("resetFormBtn").addEventListener("click", resetForm);
+
+  videoFileInput.addEventListener("change", async () => {
+    const file = videoFileInput.files[0];
+    if (!file) return;
+
+    videoUploadStatus.textContent = "업로드 중...";
+    try {
+      const formData = new FormData();
+      formData.append("video", file);
+      const res = await fetch("/api/admin/upload/video", {
+        method: "POST",
+        headers: { Authorization: `Bearer ${authToken}` },
+        body: formData,
+      });
+      const data = await res.json();
+      if (!res.ok || !data.ok) throw new Error(data.error || "업로드에 실패했습니다.");
+
+      fields.videoUrl.value = data.url;
+      videoUploadStatus.textContent = `업로드 완료: ${file.name}`;
+    } catch (err) {
+      videoUploadStatus.textContent = err.message;
+    }
+  });
 
   function getFormData() {
     const status = projectForm.querySelector('input[name="status"]:checked').value;
@@ -111,6 +139,7 @@
       date: fields.date.value.trim(),
       memberCount: fields.memberCount.value.trim(),
       note: fields.note.value.trim(),
+      videoUrl: fields.videoUrl.value,
       status,
     };
   }
@@ -159,6 +188,8 @@
     fields.date.value = project.date;
     fields.memberCount.value = project.memberCount;
     fields.note.value = project.note;
+    fields.videoUrl.value = project.videoUrl || "";
+    videoUploadStatus.textContent = project.videoUrl ? `현재 등록된 영상: ${project.videoUrl.split("/").pop()}` : "";
     projectForm.querySelector(`input[name="status"][value="${project.status}"]`).checked = true;
     formError.hidden = true;
     projectForm.scrollIntoView({ behavior: "smooth" });

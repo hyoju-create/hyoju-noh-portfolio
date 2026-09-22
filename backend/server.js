@@ -8,6 +8,7 @@ const contactRouter = require("./routes/contact");
 const projectsRouter = require("./routes/projects");
 const adminAuthRouter = require("./routes/adminAuth");
 const adminProjectsRouter = require("./routes/adminProjects");
+const adminUploadRouter = require("./routes/adminUpload");
 const { useSupabase } = require("./data/store");
 
 const app = express();
@@ -30,6 +31,7 @@ app.use("/api/contact", contactRouter);
 app.use("/api/projects", projectsRouter);
 app.use("/api/admin", adminAuthRouter);
 app.use("/api/admin/projects", adminProjectsRouter);
+app.use("/api/admin/upload", adminUploadRouter);
 
 // `node server.js`로 직접 실행할 때만 포트를 열어 서버를 띄운다.
 // Vercel 서버리스 환경에서는 이 파일을 함수로만 불러쓰기 때문에 listen하지 않는다.
